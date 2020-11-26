@@ -11,6 +11,7 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'signup', component: SignupComponent},
   {path: 'home', component: HomeComponent },
+  {path: 'dine', loadChildren: () => import('./dine-in/dine-in.module').then(mod => mod.DineInModule) }, 
   { path: '**', component: PagenotfoundComponent },
 ];
 

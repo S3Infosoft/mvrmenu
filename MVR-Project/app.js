@@ -51,7 +51,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public/dist/express')));
 
-app.get(['/home', '/', '/login', '/signup', '/home/*'], function(req, res) {
+app.get(['/home', '/', '/login', '/signup', '/home/*', '/dine'], function(req, res) {
     res.header("Access-Control-Allow-Origin", '*');
     res.header('Access-Control-Allow-Headers', 'Content-type,Accept,X-Access-Token,X-Key,token,Origin,X-Origin, Authorization');
     res.sendFile('index.html', { root: __dirname + '/public/dist/express' });
