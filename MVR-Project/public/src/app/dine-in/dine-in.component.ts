@@ -7,11 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DineInComponent implements OnInit {
   showTimings:boolean =false;
-  notifications=[]
-  length = []
+  length = [{n:5}];
+  notifications=[ {dish:"pulav" , amount:"50"},
+  {dish:"pulav" , amount:"50"},
+  {dish:"pulav" , amount:"50"}
+,{dish:"pulav" , amount:"50"}]
+  showIcons:boolean= true;
   constructor() { }
 
   ngOnInit(): void {
+    this.showIcons= true;
   }
 
   
@@ -34,6 +39,10 @@ openTimings(){
 closeTimings() {
   document.getElementById("mySidenav1").style.width = "0";
   document.getElementById("main").style.marginLeft= "0";
+}
+
+onClickSearch(){
+  this.showIcons= false;
 }
 
 }
