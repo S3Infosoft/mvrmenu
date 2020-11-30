@@ -15,6 +15,9 @@ import { AuthGuard } from "./auth.guard";
 import { PagenotfoundComponent } from './auth/pagenotfound/pagenotfound.component';
 import { SpinnerComponent } from './shared/spinner/spinner.component';
 import { HomeComponent } from './home/home.component';
+import { HighlightDirective } from './shared/highlight.directive';
+import { PipesModule } from './shared/pipes/pipes.module';
+import { StickyNavModule } from 'ng2-sticky-nav';
 
 
 
@@ -26,8 +29,9 @@ import { HomeComponent } from './home/home.component';
     PagenotfoundComponent,
     SpinnerComponent,
     HomeComponent,
-  
+    HighlightDirective,
   ],
+
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -35,10 +39,13 @@ import { HomeComponent } from './home/home.component';
     HttpClientModule,
     MatPaginatorModule,
     BrowserAnimationsModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    PipesModule,
+    StickyNavModule
+    
   ],
 
-  providers: [ AuthGuard ,{ provide : HTTP_INTERCEPTORS , useClass : AuthInterceptor , multi : true}],
+  providers: [ AuthGuard, PipesModule, { provide : HTTP_INTERCEPTORS , useClass : AuthInterceptor , multi : true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

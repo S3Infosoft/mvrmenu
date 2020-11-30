@@ -14,7 +14,8 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.spinner.requestEnded();
   }
-  onclick(){
+  onClick(){
+    console.log('c')
     this.router.navigate(['/dine'])
   }
 }

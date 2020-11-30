@@ -8,13 +8,13 @@ import { Component, OnInit } from '@angular/core';
 export class DineInComponent implements OnInit {
   showTimings:boolean =false;
   length = [{n:5}];
-  notifications=[ {dish:"pulav" , amount:"50"},
-  {dish:"pulav" , amount:"50"},
-  {dish:"pulav" , amount:"50"}
-,{dish:"pulav" , amount:"50"}]
+  searchText: string;
+  notifications=[ { img:"https://img.icons8.com/fluent/10/000000/vegetarian-food-symbol.png" , dish:"pulav" , amount:"50"},
+  { img:"https://img.icons8.com/fluent/10/000000/vegetarian-food-symbol.png" ,dish:"pulav" , amount:"50"},
+  {  img:"https://img.icons8.com/fluent/10/000000/vegetarian-food-symbol.png", dish:"upma" , amount:"50"}
+,{ img:"https://img.icons8.com/fluent/10/000000/vegetarian-food-symbol.png", dish:"poha" , amount:"50"}]
   showIcons:boolean= true;
   constructor() { }
-
   ngOnInit(): void {
     this.showIcons= true;
   }
@@ -44,5 +44,13 @@ closeTimings() {
 onClickSearch(){
   this.showIcons= false;
 }
+
+toAbout(){
+  document.getElementById("section1").scrollIntoView({behavior:"smooth"});
+  document.getElementById("mySidenav").style.width = "0";
+  document.getElementById("main").style.marginLeft= "0";
+};
+
+
 
 }
