@@ -10,27 +10,23 @@ router.get('/', function(req, res, next) {
 
 
 router.post('/signup', (req, res, next) => {
-
-    bcrypt.hash(req.body.password, 10)
-        .then(hash => {
-            const user = new User({
-                email: req.body.email,
-                password: hash,
-                role: req.body.role
+    const user = new User({
+        name: req.body.name,
+        email: req.body.email,
+        phone: req.body.phone
+    })
+    user.save()
+        .then(result => {
+            res.status(201).json({
+                message: "user created",
+                result: result
             })
-            user.save()
-                .then(result => {
-                    res.status(201).json({
-                        message: "user created",
-                        result: result
-                    })
-                })
-                .catch(err => {
-                    res.status(500).json({
-                        error: err
-                    });
-                })
-        });
+        })
+        .catch(err => {
+            res.status(500).json({
+                error: err
+            });
+        })
 });
 
 

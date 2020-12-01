@@ -1,5 +1,8 @@
 body {
-    font-family: "Lato", sans-serif;
+    font-family: Roboto, Helvetica Neue, sans-serif;
+    /* max-width: 460px;
+    float: none !important;
+    margin: 0 auto !important; */
 }
 
 .sidenav {
@@ -22,10 +25,11 @@ body {
     color: black;
     display: block;
     transition: 0.3s;
+    font-size: calc(12px + .8vw);
 }
 
 .sidenav a:hover {
-    color: #f1f1f1;
+    color: #333131;
 }
 
 .sidenav .closebtn {
@@ -71,18 +75,13 @@ body {
     top: -10px;
 }
 
-
-/* hr {
+li>hr {
     width: 100%;
-    display: block;
     margin-top: 0%;
     margin-bottom: 0.5em;
     margin-left: 0%;
     margin-right: 0%;
-    padding: 0%;
-    border-width: 1px;
-    background-color: black;
-} */
+}
 
 tr>hr {
     margin-top: 0%;
@@ -95,17 +94,17 @@ thead>tr>th {
     left: -30px;
     padding-left: 0%;
     margin-left: 0%;
-    font-size: 5vw;
+    font-size: calc(12px + 1.5vw);
     margin-top: 0%;
     margin-bottom: 0.5em;
 }
 
 .active {
-    font-size: 4vw;
+    font-size: calc(12px + .8vw);
     margin-top: 0%;
     margin-bottom: 0%;
-    padding-top: 2%;
-    padding-bottom: 2%;
+    padding-top: 2.5%;
+    padding-bottom: 2.5%;
     padding-right: 0%
 }
 
@@ -191,4 +190,10 @@ thead>tr>th {
 
 .navbar {
     max-height: 80px;
+}
+
+.navbtn.active,
+.navbtn:hover {
+    background-color: #666;
+    color: white;
 }

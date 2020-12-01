@@ -6,7 +6,7 @@ var logger = require('morgan');
 const mongoose = require('mongoose')
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-// const Post = require('../expressproject/model/post');
+const Menu = require('./model/menu');
 // const checkAuth = require('./middleware/check-auth')
 var app = express();
 
@@ -14,7 +14,7 @@ var bodyParser = require('body-parser');
 const { error } = require('console');
 
 // EvnF8OYFQewh5ovy
-mongoose.connect("mongodb+srv://ana:rxzn1nCnntODy7xp@cluster0.hl9eq.mongodb.net/docpot?retryWrites=true&w=majority", { useUnifiedTopology: true, useNewUrlParser: true })
+mongoose.connect("mongodb+srv://ana:rxzn1nCnntODy7xp@cluster0.hl9eq.mongodb.net/mvr?retryWrites=true&w=majority", { useUnifiedTopology: true, useNewUrlParser: true })
     .then(() => {
         console.log('connected to Database')
     })
@@ -60,53 +60,42 @@ app.get(['/home', '/', '/login', '/signup', '/home/*', '/dine'], function(req, r
 app.use('/', indexRouter);
 app.use('/users/', usersRouter);
 
-// app.post("/api/postData", checkAuth, (req, res, next) => {
-//     const post = new Post({
-//         userName: req.body.userName,
-//         userCountry: req.body.userCountry,
-//         userModeOfPay: req.body.userModeOfPay,
-//         creator: req.userData.userId,
-//         creatorName: req.userData.email
-//     });
-//     post.save();
-//     res.status(201).json({
-//         message: post,
-//     })
-// });
-
-
-// app.get("/api/getData", (request, response) => {
-//         const pageSize = +request.query.pagesize;
-//         const currentPage = +request.query.page;
-//         const postQuery = Post.find();
-//         if (pageSize && currentPage) {
-//             postQuery.skip(pageSize * (currentPage - 1))
-//                 .limit(pageSize);
-//             console.log(pageSize)
-//         }
-//         postQuery.then(documents => {
-
-//             response.status(201).json({
-//                 message: documents,
-//             })
-//         });
-//     }),
-
-
-//     app.delete("/api/deleteData/:id", checkAuth, (req, res, next) => {
-//     Post.deleteOne({ _id: req.params.id, creator: req.userData.userId }).then(result => {
-//         if (result.n > 0) {
-//             res.status(200).json({ message: 'post deleted' })
-//         } else
-//             res.status(401).json({ message: 'Un Authorised' })
-//     })
-
-// });
-
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-    next(createError(404));
+app.post("/api/postData", (req, res, next) => {
+    const menu = new Menu({
+        menu: req.body,
+    });
+    menu.save();
+    res.status(201).json({
+        message: menu,
+    })
 });
+
+
+app.get("/api/getData", (request, response) => {
+        const postQuery = Menu.find();
+        postQuery.then(documents => {
+
+            response.status(201).json({
+                message: documents,
+            })
+        });
+    }),
+
+
+    //     app.delete("/api/deleteData/:id", checkAuth, (req, res, next) => {
+    //     Post.deleteOne({ _id: req.params.id, creator: req.userData.userId }).then(result => {
+    //         if (result.n > 0) {
+    //             res.status(200).json({ message: 'post deleted' })
+    //         } else
+    //             res.status(401).json({ message: 'Un Authorised' })
+    //     })
+
+    // });
+
+    // catch 404 and forward to error handler
+    app.use(function(req, res, next) {
+        next(createError(404));
+    });
 
 // error handler
 app.use(function(err, req, res, next) {

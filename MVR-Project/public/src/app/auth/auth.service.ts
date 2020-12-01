@@ -18,9 +18,9 @@ export class AuthService {
   constructor(  private http :HttpClient , private router : Router , private _as: AppService ) { }
 
 
-  createUser( email: string , password : string , role: string ) {
+  createUser( name: string , email: string , phone : string ) {
 
-   const  authData : AuthData = { email: email , password: password, role:role }
+   const  authData : AuthData = {  name: name , email: email , phone: phone }
     this.http.post("/users/signup" , authData).subscribe( response => {
       console.log(response);
       
