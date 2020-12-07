@@ -14,23 +14,29 @@ export class DineInComponent implements OnInit {
   quickbites : any = [];
   nonvegpizza : any =[];
   vegpizza: any=[];
-  temp: any = []
+  HotBeverages: any=[];
+  ColdBeverages: any=[];
+  showSearch:boolean =true;
+  showHeader:boolean =true;
+  bites:any=[{bite:"Quick Bites"}]
   notifications=[ { img:"https://img.icons8.com/fluent/10/000000/vegetarian-food-symbol.png" , dish:"pulav" , amount:"50"},
   { img:"https://img.icons8.com/fluent/10/000000/vegetarian-food-symbol.png" ,dish:"pulav" , amount:"50"},
   {  img:"https://img.icons8.com/fluent/10/000000/vegetarian-food-symbol.png", dish:"upma" , amount:"50"}
-,{ img:"https://img.icons8.com/color/10/000000/non-vegetarian-food-symbol.png", dish:"poha" , amount:"50"}]
+,{ img:"https://img.icons8.com/color/12/000000/non-vegetarian-food-symbol.png", dish:"poha" , amount:"50"}]
   showIcons:boolean= true;
 
-  menu = [{ message: { quickbites:[{dish:"Cheesy Chilli toast" , price:"100" , category:"veg" , img:"https://img.icons8.com/fluent/10/000000/vegetarian-food-symbol.png"} , {dish:"upma/upit" , price:"50" , category:"veg" , img:"https://img.icons8.com/fluent/10/000000/vegetarian-food-symbol.png"} , {dish:"Kanda Poha" , price:"50" , category:"veg" , img:"https://img.icons8.com/fluent/10/000000/vegetarian-food-symbol.png"} , {dish:"Sheera" , price:"100" , category:"veg" , img:"https://img.icons8.com/fluent/10/000000/vegetarian-food-symbol.png"}, {dish:"Sabudana" , price:"150" , category:"veg" ,img:"https://img.icons8.com/fluent/10/000000/vegetarian-food-symbol.png"}] ,
-  nonvegpizza:[{dish:"Chiken cheese Sandwitch" , price:"100" , category:"veg" ,  img:"https://img.icons8.com/color/10/000000/non-vegetarian-food-symbol.png"} , {dish:"Chicken Grilled Sandwitch" , price:"100" , category:"veg" ,  img:"https://img.icons8.com/color/10/000000/non-vegetarian-food-symbol.png"} , {dish:"Chicken Garlic Chilly Sandwitch" , price:"100" , category:"veg" ,  img:"https://img.icons8.com/color/10/000000/non-vegetarian-food-symbol.png"}] ,
-  vegpizza:[{dish:"Cheese Chilly Sandwich" , price:"100" , category:"veg" , img:"https://img.icons8.com/fluent/10/000000/vegetarian-food-symbol.png"} ,{dish:"cheesy chilli sandwitch" , price:"100" , category:"veg" , img:"https://img.icons8.com/fluent/10/000000/vegetarian-food-symbol.png"} , {dish:"cheesy Garlic sandwitch" , price:"100" , category:"veg" , img:"https://img.icons8.com/fluent/10/000000/vegetarian-food-symbol.png"}] },
-   }]
+  menu = [{ message: { QuickBites:[{dish:"Bread Butter Toast" , price:"100" ,  type:"V" ,   img: "https://img.icons8.com/fluent/12/000000/vegetarian-food-symbol.png" } , {dish:"Cheese Chilly Toast" , price:"120" ,   type:"V" ,   img: "https://img.icons8.com/fluent/12/000000/vegetarian-food-symbol.png"} , {dish:"Aloo Paratha With Curd" , price:"120" ,   type:"V" ,   img: "https://img.icons8.com/fluent/12/000000/vegetarian-food-symbol.png"} , {dish:"Mix Veg Pakoda " , price:"100" ,  type:"V" ,   img: "https://img.icons8.com/fluent/12/000000/vegetarian-food-symbol.png"}, {dish:"Kanda Poha" , price:"70"  , type:"V" ,  img: "https://img.icons8.com/fluent/12/000000/vegetarian-food-symbol.png"}] ,
+  QuickBitesVegSandwich:[{dish:"Cheese Garlic Sandwich" , price:"130" ,  type:"V" ,   img: "https://img.icons8.com/fluent/12/000000/vegetarian-food-symbol.png"} , {dish:"Cheese Chilly Sandwich " , price:"135" ,   type:"V" ,  img: "https://img.icons8.com/fluent/12/000000/vegetarian-food-symbol.png"} , {dish:"Grilled Veg Sandwich" , price:"125" ,   type:"V" ,  img: "https://img.icons8.com/fluent/12/000000/vegetarian-food-symbol.png"} , {dish:"Cheese Sandwich" , price:"125" ,  type:"V" ,  img: "https://img.icons8.com/fluent/12/000000/vegetarian-food-symbol.png"}, {dish:"Sabudana" , price:"120"  , type:"V" ,  img: "https://img.icons8.com/fluent/12/000000/vegetarian-food-symbol.png"}] ,
+  QuickBitesNonVegSandwich:[{dish:"Chicken Cheese Garlic Sandwich" , price:"120" , type:"N" , img:"https://img.icons8.com/color/12/000000/non-vegetarian-food-symbol.png"} , {dish:"Chicken Cheese Sandwich " , price:"120" ,  type:"N" , img:"https://img.icons8.com/color/12/000000/non-vegetarian-food-symbol.png"} , {dish:"Grilled Chicken Sandwich " , price:"120" ,  type:"N" , img:"https://img.icons8.com/color/12/000000/non-vegetarian-food-symbol.png"} , {dish:"Chicken Garlic Chilli Sandwich" , price:"120" , type:"N" , img:"https://img.icons8.com/color/12/000000/non-vegetarian-food-symbol.png"}] ,
+  HotBeverages:[{dish:"Tea" , price:"35" ,  type:"V" ,  img: "https://img.icons8.com/fluent/12/000000/vegetarian-food-symbol.png"} , {dish:"Coffe" , price:"35" ,   type:"V" ,  img: "https://img.icons8.com/fluent/12/000000/vegetarian-food-symbol.png"} , {dish:"Lemon Tea" , price:"35" ,   type:"V" ,  img: "https://img.icons8.com/fluent/12/000000/vegetarian-food-symbol.png"} , {dish:"Black Tea" , price:"35" ,  type:"V" ,   img: "https://img.icons8.com/fluent/12/000000/vegetarian-food-symbol.png"}, {dish:"Masala Tea" , price:"35"  , type:"V" ,  img: "https://img.icons8.com/fluent/12/000000/vegetarian-food-symbol.png"}] ,
+  ColdBeverages:[{dish:"Banana Milk Shake" , price:"100" ,  type:"V" ,  img: "https://img.icons8.com/fluent/12/000000/vegetarian-food-symbol.png"} , {dish:"Cold Coffee " , price:"100" ,   type:"V" ,  img: "https://img.icons8.com/fluent/12/000000/vegetarian-food-symbol.png"} , {dish:"Cold Coffee With Ice Cream " , price:"120" ,   type:"V" ,   img: "https://img.icons8.com/fluent/12/000000/vegetarian-food-symbol.png"} , {dish:"Sweet Lassi" , price:"100" ,  type:"V" ,   img: "https://img.icons8.com/fluent/12/000000/vegetarian-food-symbol.png"}, {dish:"Butter Milk or Tak" , price:"100"  , type:"V" ,   img: "https://img.icons8.com/fluent/12/000000/vegetarian-food-symbol.png"}] }
+}]
 
   constructor( private _as: AppService , private spinner:SpinnerService ) { }
   ngOnInit(): void {
     this.showIcons= true;
     this.getMenu()
-    // this.updateMenu()
+    //this.updateMenu()
   }
 
   
@@ -86,38 +92,45 @@ tocoldBeverages(){
   document.getElementById("main").style.marginLeft= "0";
 }
 tostarterVeg(){
-  document.getElementById("vegStarters").scrollIntoView({behavior:"smooth"});
-  document.getElementById("mySidenav").style.width = "0";
-  document.getElementById("main").style.marginLeft= "0";
+  // document.getElementById("vegStarters").scrollIntoView({behavior:"smooth"});
+  // document.getElementById("mySidenav").style.width = "0";
+  // document.getElementById("main").style.marginLeft= "0";
 }
 
 toSalad(){
-  document.getElementById("saladandRaita").scrollIntoView({behavior:"smooth"});
-  document.getElementById("mySidenav").style.width = "0";
-  document.getElementById("main").style.marginLeft= "0";
+  // document.getElementById("saladandRaita").scrollIntoView({behavior:"smooth"});
+  // document.getElementById("mySidenav").style.width = "0";
+  // document.getElementById("main").style.marginLeft= "0";
 }
 toSeaFoodStarters(){
-  document.getElementById("seafoodStarters").scrollIntoView({behavior:"smooth"});
-  document.getElementById("mySidenav").style.width = "0";
-  document.getElementById("main").style.marginLeft= "0";
+  // document.getElementById("seafoodStarters").scrollIntoView({behavior:"smooth"});
+  // document.getElementById("mySidenav").style.width = "0";
+  // document.getElementById("main").style.marginLeft= "0";
 }
 
 getMenu(){
   this._as.getData( ).
     subscribe((response : any) =>
     {
-      this.quickbites = response.message[0].menu[0].message.quickbites;
-      this.vegpizza = response.message[0].menu[0].message.vegpizza;
-      this.nonvegpizza = response.message[0].menu[0].message.nonvegpizza;
-      console.log(this.quickbites);
-      console.log(this.vegpizza);
-      console.log(this.nonvegpizza)
+    this.vegpizza = response.message[0].menu[0].message.QuickBitesVegSandwich;
+     this.nonvegpizza = response.message[0].menu[0].message.QuickBitesNonVegSandwich;
+     this.quickbites = response.message[0].menu[0].message.QuickBites;
+     this.HotBeverages =  response.message[0].menu[0].message.HotBeverages;
+     this.ColdBeverages =  response.message[0].menu[0].message.ColdBeverages;
       console.log( 'response from API',response.message)
       this.spinner.requestEnded();
     }), (error) => {
       console.log( 'error is' , error)
       this.spinner.requestEnded();
     }
+   
+}
+closeFilter(){
+  this.showSearch = true;
+  this.searchText = null
+}
+Filter(i){
+  console.log("g")
 }
 
 updateMenu(){
@@ -130,3 +143,4 @@ updateMenu(){
       }
   }
 }
+

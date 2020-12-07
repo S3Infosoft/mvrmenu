@@ -134,34 +134,42 @@
                 </div>
             </div>
 
-            <nav class="navbar navbar-default navbar-sticky-top border-bottom " style="background-color: rgb(102, 96, 96); overflow: hidden;">
+            <nav class="navbar navbar-default navbar-sticky border-bottom " style="background-color: rgb(102, 96, 96); overflow: hidden;">
                 <ul class="navbar-nav ">
                     <div class="merchant-Timings">
                         <span style="font-size:30px;cursor:pointer; width:50%; object-fit: contain ;  padding-bottom: 0%" (click)="openTimings()">&#9776;  </span>
                     </div>
+
                     <div class="mr-auto">
                         <div id="main" style="padding-left:0%">
-                            <button class="btn btn-default" style="background-color: black; color: white; border-radius: 30px ; max-height: 30px; width: 100% ; text-align: center; position: relative;
+                            <button class="btn btn-default" style="background-color: black; color: white; border-radius:40px ; max-height: 30px; width: 100% ; text-align: center; position: relative;
                                 top:-25px; padding-top: 2%;" (click)="openNav()">Menu</button>
                         </div>
                     </div>
                 </ul>
                 <div class="navbar-right">
                     <ul class="navbar navbar-default navbar-fixed-top">
-                        <li *ngIf="showIcons" class="nav-item2">
-                            <a class="c-header-nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                                <img src="https://img.icons8.com/color/48/000000/sorting-options.png" style='height: 50%; width: 50%; object-fit: contain' />
+                        <li class="nav-item2">
+                            <a class="c-header-nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" autofocus>
+                                <img src="https://img.icons8.com/color/48/000000/sorting-options.png" style='height: 50%; width: 50%; object-fit: contain ; padding-bottom: 0%;' />
                             </a>
+                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg pt-0" style="background-color:black; color: white; border:transparent ; text-align: center;">
+                                <input type="radio" id="V" name="type" value="V" [(ngModel)]="searchText" [ngModelOptions]="{standalone:true}">
+                                <label for="V" style="color:white; padding-right:5%;">Veg </label>
+                                <input type="radio" id="N" name="type" value="N" [(ngModel)]="searchText" [ngModelOptions]="{standalone:true}">
+                                <label for="N" style="color:white; padding-right: 10%;">Non-Veg</label>
+                                <a href="javascript:void(0)" style="color: white;" class="closebtn" (click)="closeFilter()">&times;</a>
+                            </div>
                         </li>
                         <li *ngIf="showIcons" class="nav-item3">
-                            <img src="https://img.icons8.com/color/48/000000/filled-star--v1.png" style='height: 60%; width: 60%; object-fit: contain ' />
+                            <img src="https://img.icons8.com/color/48/000000/filled-star--v1.png" style='height: 60%; width: 60%; object-fit: contain ' autofocus />
                         </li>
                         <li class="nav-item1">
                             <form>
                                 <div class="flexbox">
-                                    <div class="search">
+                                    <div class="search" *ngIf="showSearch">
                                         <div>
-                                            <input type="text" placeholder="Search . . ." (click)="onClickSearch()" id="search-text" aria-describedby="search-text" [(ngModel)]="searchText" [ngModelOptions]="{standalone:true}" autofocus>
+                                            <input autocomplete="Search . . ." type="text" placeholder="Search . . ." (click)="onClickSearch()" id="search-text" aria-describedby="search-text" [(ngModel)]="searchText" [ngModelOptions]="{standalone:true}" autofocus>
                                         </div>
                                     </div>
                                 </div>
@@ -179,9 +187,9 @@
                                     <th>Quick Bites</th>
                                 </tr>
                             </thead>
-                            <tr *ngFor="let displayItem of quickbites  | appFilter: searchText" appHighlight [searchedWord]="searchText" [content]="c" [classToApply]="'font-weight-bold'" [setTitle]="'true'">
+                            <tr *ngFor="let displayItem of quickbites  | appFilter: searchText" appHighlight [searchedWord]="searchText" [content]="c" [classToApply]="'font-weight-bold'" [setTitle]="'true'" ng-model="displayItem.length" ng-change=" Filter(displayItem.length) ">
                                 <td class="active">
-                                    <img src="{{displayItem.img}}" /> {{displayItem.dish}}
+                                    <img src="{{displayItem.img}} " /> {{displayItem.dish}}
                                 </td>
                                 <td class="active">
                                     {{ displayItem.price}}
@@ -193,11 +201,11 @@
                                     <th>Quick Bites-Veg Sandwich</th>
                                 </tr>
                             </thead>
-                            <tr *ngFor="let displayItem of vegpizza  | appFilter: searchText" appHighlight [searchedWord]="searchText" [content]="c" [classToApply]="'font-weight-bold'" [setTitle]="'true'">
-                                <td class="active">
-                                    <img src="{{displayItem.img}}" /> {{displayItem.dish}}
+                            <tr *ngFor="let displayItem of vegpizza | appFilter: searchText " appHighlight [searchedWord]="searchText " [content]="c " [classToApply]=" 'font-weight-bold' " [setTitle]=" 'true' ">
+                                <td class="active ">
+                                    <img src="{{displayItem.img}} " /> {{displayItem.dish}}
                                 </td>
-                                <td class="active">
+                                <td class="active ">
                                     {{ displayItem.price}}
                                 </td>
                                 <hr>
@@ -208,11 +216,11 @@
                                     <th> Quick Bites Non-Veg Sandwich</th>
                                 </tr>
                             </thead>
-                            <tr *ngFor="let displayItem of nonvegpizza  | appFilter: searchText" appHighlight [searchedWord]="searchText" [content]="c" [classToApply]="'font-weight-bold'" [setTitle]="'true'">
-                                <td class="active">
-                                    <img src="{{displayItem.img}}" /> {{displayItem.dish}}
+                            <tr *ngFor="let displayItem of nonvegpizza | appFilter: searchText " appHighlight [searchedWord]="searchText " [content]="c " [classToApply]=" 'font-weight-bold' " [setTitle]=" 'true' ">
+                                <td class="active ">
+                                    <img src="{{displayItem.img}} " /> {{displayItem.dish}}
                                 </td>
-                                <td class="active">
+                                <td class="active ">
                                     {{ displayItem.price}}
                                 </td>
                                 <hr>
@@ -222,12 +230,12 @@
                                     <th> Hot Beverages</th>
                                 </tr>
                             </thead>
-                            <tr *ngFor="let displayItem of notifications  | appFilter: searchText" appHighlight [searchedWord]="searchText" [content]="c" [classToApply]="'font-weight-bold'" [setTitle]="'true'">
-                                <td class="active">
-                                    <img src="{{displayItem.img}}" /> {{displayItem.dish}}
+                            <tr *ngFor="let displayItem of ColdBeverages | appFilter: searchText " appHighlight [searchedWord]="searchText " [content]="c " [classToApply]=" 'font-weight-bold' " [setTitle]=" 'true' ">
+                                <td class="active ">
+                                    <img src="{{displayItem.img}} " /> {{displayItem.dish}}
                                 </td>
-                                <td class="active">
-                                    {{ displayItem.amount}}
+                                <td class="active ">
+                                    {{ displayItem.price}}
                                 </td>
                                 <hr>
                             </tr>
@@ -236,54 +244,12 @@
                                     <th> Cold Beverages</th>
                                 </tr>
                             </thead>
-                            <tr *ngFor="let displayItem of notifications  | appFilter: searchText" appHighlight [searchedWord]="searchText" [content]="c" [classToApply]="'font-weight-bold'" [setTitle]="'true'">
-                                <td class="active">
-                                    <img src="{{displayItem.img}}" /> {{displayItem.dish}}
+                            <tr *ngFor="let displayItem of HotBeverages | appFilter: searchText " appHighlight [searchedWord]="searchText " [content]="c " [classToApply]=" 'font-weight-bold' " [setTitle]=" 'true' ">
+                                <td class="active ">
+                                    <img src="{{displayItem.img}} " /> {{displayItem.dish}}
                                 </td>
-                                <td class="active">
-                                    {{ displayItem.amount}}
-                                </td>
-                                <hr>
-                            </tr>
-                            <thead id="vegStarters">
-                                <tr>
-                                    <th> Veg Starters</th>
-                                </tr>
-                            </thead>
-                            <tr *ngFor="let displayItem of notifications  | appFilter: searchText" appHighlight [searchedWord]="searchText" [content]="c" [classToApply]="'font-weight-bold'" [setTitle]="'true'">
-                                <td class="active">
-                                    <img src="{{displayItem.img}}" /> {{displayItem.dish}}
-                                </td>
-                                <td class="active">
-                                    {{ displayItem.amount}}
-                                </td>
-                                <hr>
-                            </tr>
-                            <thead id="saladandRaita">
-                                <tr>
-                                    <th> Salad and Raita </th>
-                                </tr>
-                            </thead>
-                            <tr *ngFor="let displayItem of notifications  | appFilter: searchText" appHighlight [searchedWord]="searchText" [content]="c" [classToApply]="'font-weight-bold'" [setTitle]="'true'">
-                                <td class="active">
-                                    <img src="{{displayItem.img}}" /> {{displayItem.dish}}
-                                </td>
-                                <td class="active">
-                                    {{ displayItem.amount}}
-                                </td>
-                                <hr>
-                            </tr>
-                            <thead id="seafoodStarters">
-                                <tr>
-                                    <th> Sea Food Starters</th>
-                                </tr>
-                            </thead>
-                            <tr *ngFor="let displayItem of notifications  | appFilter: searchText" appHighlight [searchedWord]="searchText" [content]="c" [classToApply]="'font-weight-bold'" [setTitle]="'true'">
-                                <td class="active">
-                                    <img src="{{displayItem.img}}" /> {{displayItem.dish}}
-                                </td>
-                                <td class="active">
-                                    {{ displayItem.amount}}
+                                <td class="active ">
+                                    {{ displayItem.price}}
                                 </td>
                                 <hr>
                             </tr>
@@ -294,8 +260,6 @@
         </div>
 
     </div>
-
-
 </body>
 
 </html>

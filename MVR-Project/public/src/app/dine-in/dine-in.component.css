@@ -147,7 +147,7 @@ thead>tr>th {
 .search>div>input {
     color: rgb(7, 7, 7);
     font-size: 16px;
-    background: rgb(152, 203, 250);
+    background: rgb(244, 245, 247);
     width: 30px;
     height: 30px;
     padding: 10px;
@@ -189,7 +189,7 @@ thead>tr>th {
 }
 
 .navbar {
-    max-height: 80px;
+    max-height: 100px;
 }
 
 .navbtn.active,
