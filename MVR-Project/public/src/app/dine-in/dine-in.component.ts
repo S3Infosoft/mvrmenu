@@ -17,14 +17,9 @@ export class DineInComponent implements OnInit {
   HotBeverages: any=[];
   ColdBeverages: any=[];
   showSearch:boolean =true;
-  showHeader:boolean =true;
-  bites:any=[{bite:"Quick Bites"}]
-  notifications=[ { img:"https://img.icons8.com/fluent/10/000000/vegetarian-food-symbol.png" , dish:"pulav" , amount:"50"},
-  { img:"https://img.icons8.com/fluent/10/000000/vegetarian-food-symbol.png" ,dish:"pulav" , amount:"50"},
-  {  img:"https://img.icons8.com/fluent/10/000000/vegetarian-food-symbol.png", dish:"upma" , amount:"50"}
-,{ img:"https://img.icons8.com/color/12/000000/non-vegetarian-food-symbol.png", dish:"poha" , amount:"50"}]
+  enteredValue:any = {};
   showIcons:boolean= true;
-
+  showGreeting:boolean= false;
   menu = [{ message: { QuickBites:[{dish:"Bread Butter Toast" , price:"100" ,  type:"V" ,   img: "https://img.icons8.com/fluent/12/000000/vegetarian-food-symbol.png" } , {dish:"Cheese Chilly Toast" , price:"120" ,   type:"V" ,   img: "https://img.icons8.com/fluent/12/000000/vegetarian-food-symbol.png"} , {dish:"Aloo Paratha With Curd" , price:"120" ,   type:"V" ,   img: "https://img.icons8.com/fluent/12/000000/vegetarian-food-symbol.png"} , {dish:"Mix Veg Pakoda " , price:"100" ,  type:"V" ,   img: "https://img.icons8.com/fluent/12/000000/vegetarian-food-symbol.png"}, {dish:"Kanda Poha" , price:"70"  , type:"V" ,  img: "https://img.icons8.com/fluent/12/000000/vegetarian-food-symbol.png"}] ,
   QuickBitesVegSandwich:[{dish:"Cheese Garlic Sandwich" , price:"130" ,  type:"V" ,   img: "https://img.icons8.com/fluent/12/000000/vegetarian-food-symbol.png"} , {dish:"Cheese Chilly Sandwich " , price:"135" ,   type:"V" ,  img: "https://img.icons8.com/fluent/12/000000/vegetarian-food-symbol.png"} , {dish:"Grilled Veg Sandwich" , price:"125" ,   type:"V" ,  img: "https://img.icons8.com/fluent/12/000000/vegetarian-food-symbol.png"} , {dish:"Cheese Sandwich" , price:"125" ,  type:"V" ,  img: "https://img.icons8.com/fluent/12/000000/vegetarian-food-symbol.png"}, {dish:"Sabudana" , price:"120"  , type:"V" ,  img: "https://img.icons8.com/fluent/12/000000/vegetarian-food-symbol.png"}] ,
   QuickBitesNonVegSandwich:[{dish:"Chicken Cheese Garlic Sandwich" , price:"120" , type:"N" , img:"https://img.icons8.com/color/12/000000/non-vegetarian-food-symbol.png"} , {dish:"Chicken Cheese Sandwich " , price:"120" ,  type:"N" , img:"https://img.icons8.com/color/12/000000/non-vegetarian-food-symbol.png"} , {dish:"Grilled Chicken Sandwich " , price:"120" ,  type:"N" , img:"https://img.icons8.com/color/12/000000/non-vegetarian-food-symbol.png"} , {dish:"Chicken Garlic Chilli Sandwich" , price:"120" , type:"N" , img:"https://img.icons8.com/color/12/000000/non-vegetarian-food-symbol.png"}] ,
@@ -39,7 +34,7 @@ export class DineInComponent implements OnInit {
     //this.updateMenu()
   }
 
-  
+
  openNav() {
    console.log("nav")
   document.getElementById("mySidenav").style.width = "250px";
@@ -119,6 +114,7 @@ getMenu(){
      this.ColdBeverages =  response.message[0].menu[0].message.ColdBeverages;
       console.log( 'response from API',response.message)
       this.spinner.requestEnded();
+     
     }), (error) => {
       console.log( 'error is' , error)
       this.spinner.requestEnded();
@@ -129,10 +125,12 @@ closeFilter(){
   this.showSearch = true;
   this.searchText = null
 }
-Filter(i){
-  console.log("g")
-}
 
+onSubmit(){
+  console.log(this.enteredValue);
+  this.enteredValue={};
+  this.showGreeting = true;
+}
 updateMenu(){
   console.log(this.menu)
       this._as.postData(this.menu).subscribe((response) =>
@@ -143,4 +141,5 @@ updateMenu(){
       }
   }
 }
+
 
