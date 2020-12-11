@@ -8,13 +8,10 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 })
 export class AppService {
   constructor( private http :HttpClient ) {  }
-  getData( postPerPage : Number , currentPage : number){
-    const queryParams  = `?pagesize=${postPerPage}& page=${currentPage}`
-    return this.http.get ('/api/getData' + queryParams)
+  getData( ){
+    return this.http.get ('/api/getData')
   }
-
-  getNotify(){
-    return this.http.get ('/api/getNotify')
-  }
+  postData( data){
+    return this.http.post ('/api/postData', data )}
 }
 

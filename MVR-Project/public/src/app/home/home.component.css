@@ -1,3 +1,10 @@
+body {
+    font-family: Roboto, Helvetica Neue, sans-serif;
+    /* max-width: 460px;
+    float: none !important;
+    margin: 0 auto !important; */
+}
+
 .merchant-heading {
     color: black;
     font-weight: 900;
@@ -54,4 +61,8 @@
 .form-elegant .modal-body,
 .form-elegant .modal-footer {
     font-weight: 400;
+}
+
+.info {
+    font-size: calc(12px + .1vw)
 }

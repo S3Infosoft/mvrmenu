@@ -1,5 +1,8 @@
 body {
-    font-family: "Lato", sans-serif;
+    font-family: Roboto, Helvetica Neue, sans-serif;
+    /* max-width: 460px;
+    float: none !important;
+    margin: 0 auto !important; */
 }
 
 .sidenav {
@@ -22,10 +25,11 @@ body {
     color: black;
     display: block;
     transition: 0.3s;
+    font-size: calc(12px + .8vw);
 }
 
 .sidenav a:hover {
-    color: #f1f1f1;
+    color: #333131;
 }
 
 .sidenav .closebtn {
@@ -71,18 +75,13 @@ body {
     top: -10px;
 }
 
-
-/* hr {
+li>hr {
     width: 100%;
-    display: block;
     margin-top: 0%;
     margin-bottom: 0.5em;
     margin-left: 0%;
     margin-right: 0%;
-    padding: 0%;
-    border-width: 1px;
-    background-color: black;
-} */
+}
 
 tr>hr {
     margin-top: 0%;
@@ -95,17 +94,17 @@ thead>tr>th {
     left: -30px;
     padding-left: 0%;
     margin-left: 0%;
-    font-size: 5vw;
+    font-size: calc(12px + 1.5vw);
     margin-top: 0%;
     margin-bottom: 0.5em;
 }
 
 .active {
-    font-size: 4vw;
+    font-size: calc(12px + .8vw);
     margin-top: 0%;
     margin-bottom: 0%;
-    padding-top: 2%;
-    padding-bottom: 2%;
+    padding-top: 2.5%;
+    padding-bottom: 2.5%;
     padding-right: 0%
 }
 
@@ -148,7 +147,7 @@ thead>tr>th {
 .search>div>input {
     color: rgb(7, 7, 7);
     font-size: 16px;
-    background: rgb(152, 203, 250);
+    background: rgb(244, 245, 247);
     width: 30px;
     height: 30px;
     padding: 10px;
@@ -170,25 +169,99 @@ thead>tr>th {
 
 .search>div>input:focus,
 .search>div>input:not(:placeholder-shown) {
-    width: 150px;
+    width: calc(155px + 2vw);
 }
 
 .nav-item1 {
     margin-right: 0px;
     margin-left: 0px;
-    top: -5px;
+    padding-right: 0%;
+    margin-right: 0%;
 }
 
 .nav-item2 {
     margin-right: 0px;
-    margin-left: 15px;
+    margin-left: 0px;
 }
 
 .nav-item3 {
-    margin-right: 0px;
+    margin-right: 24px;
     margin-left: 0px;
 }
 
 .navbar {
-    max-height: 80px;
+    max-height: 100px;
+}
+
+.navbtn.active,
+.navbtn:hover {
+    background-color: #666;
+    color: white;
+}
+
+.rate {
+    float: center !important;
+    height: 60px;
+    align-items: center;
+    text-align: center
+}
+
+.rate:not(:checked)>input {
+    position: absolute;
+    top: -9999px;
+}
+
+.rate:not(:checked)>label {
+    width: 1em;
+    overflow: hidden;
+    white-space: nowrap;
+    cursor: pointer;
+    font-size: 55px;
+    color: #ccc;
+}
+
+.rate:not(:checked)>label:before {
+    content: '★ ';
+}
+
+.rate>input:checked~label {
+    color: #ffc700;
+}
+
+.rate:not(:checked)>label:hover,
+.rate:not(:checked)>label:hover~label {
+    color: #deb217;
+}
+
+.rate>input:checked+label:hover,
+.rate>input:checked+label:hover~label,
+.rate>input:checked~label:hover,
+.rate>input:checked~label:hover~label,
+.rate>label:hover~input:checked~label {
+    color: #c59b08;
+}
+
+.note {
+    align-items: center;
+    text-align: center;
+    padding-top: 0%;
+    padding-bottom: 0%;
+    margin-top: 0%;
+    margin-bottom: 0%;
+}
+
+.note>p {
+    padding-top: 0%;
+    padding-bottom: 0%;
+    margin-top: 0%;
+    margin-bottom: 0%;
+}
+
+.question {
+    align-items: center;
+    text-align: center;
+}
+
+.modal-header {
+    height: 100px;
 }
